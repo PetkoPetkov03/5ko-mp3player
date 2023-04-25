@@ -1,5 +1,7 @@
 mod greeting;
 mod dirreader;
+mod dirreadertypes;
+
 
 #[tauri::command]
 pub fn greeting_api() -> &'static str {
@@ -7,15 +9,8 @@ pub fn greeting_api() -> &'static str {
 }
 
 #[tauri::command]
-pub fn dirreader_api() -> Vec<String> {
-    let dir_read = dirreader::dir_reader_fn();
-    let mut vector_paths: Vec<String> = Vec::new();
-
-    for path in dir_read {
-        vector_paths.push(path.unwrap().path().display().to_string());
-    }
-
-    return vector_paths;
+pub fn dirreader_api() -> Vec<dirreadertypes::FileStruct> {
+    return dirreader::dir_reader_fn();
 }
 
 #[tauri::command]
@@ -31,4 +26,9 @@ pub fn display_current_dir_api() -> String {
 #[tauri::command]
 pub fn parent_dir_api() {
     let _ = dirreader::dir_parent();
+}
+
+#[tauri::command]
+pub fn previous_action_api() {
+    let _  = dirreader::dir_previous_action();
 }

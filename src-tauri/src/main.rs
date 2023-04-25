@@ -7,7 +7,8 @@ fn main() {
                 handlers::dirreader_api,
                 handlers::hop_dir_api,
                 handlers::display_current_dir_api,
-                handlers::parent_dir_api
+                handlers::parent_dir_api,
+                handlers::previous_action_api
             ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
